@@ -31,7 +31,7 @@ public class AutorController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("/findByName/{nome}")
     public ResponseEntity<AutorResponse> findByName(@PathVariable String nome) {
         AutorResponse response = service.findByName(nome);
         return ResponseEntity.ok(response);
@@ -49,6 +49,7 @@ public class AutorController {
         return ResponseEntity.ok(response);
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<AutorResponse> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();

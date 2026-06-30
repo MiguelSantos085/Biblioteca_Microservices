@@ -56,12 +56,11 @@ public class AutorServiceImpl implements AutorService {
         AutorModel autor = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Autor not found"));
 
-        autor.setNome(request.getNome());
-        autor.setNacionalidade(request.getNacionalidade());
-        autor.setAnoNascimento(request.getAnoNascimento());
+        mapper.updateAutorFromRequest(request, autor);
 
-        AutorModel updated = repository.save(autor);
-        return mapper.toResponse(updated);
+        AutorModel atualizado = repository.save(autor);
+
+        return mapper.toResponse(atualizado);
     }
 
     @Override
