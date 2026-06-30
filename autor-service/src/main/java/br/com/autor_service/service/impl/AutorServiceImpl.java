@@ -37,9 +37,9 @@ public class AutorServiceImpl implements AutorService {
     }
 
     @Override
-    public AutorResponse findByName(String name) {
-        AutorModel autor = repository.findByName(name)
-                .orElseThrow(() -> new RuntimeException("Autor name not found"));
+    public AutorResponse findByName(String nome) {
+        AutorModel autor = repository.findByNome(nome)
+                .orElseThrow(() -> new RuntimeException("Autor nome not found"));
         return mapper.toResponse(autor);
     }
 

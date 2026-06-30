@@ -31,9 +31,9 @@ public class AutorController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<AutorResponse> findByName(@PathVariable String name) {
-        AutorResponse response = service.findByName(name);
+    @GetMapping("/{nome}")
+    public ResponseEntity<AutorResponse> findByName(@PathVariable String nome) {
+        AutorResponse response = service.findByName(nome);
         return ResponseEntity.ok(response);
     }
 

@@ -3,7 +3,7 @@ package br.com.autor_service.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "Autores")
 public class AutorModel {
 
     @Id

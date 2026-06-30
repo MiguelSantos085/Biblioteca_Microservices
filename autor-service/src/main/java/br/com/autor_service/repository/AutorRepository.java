@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface AutorRepository extends JpaRepository<AutorModel, Long> {
 
-    Optional<AutorModel> findByName(String name);
+    Optional<AutorModel> findByNome(String nome);
 
     Optional<AutorModel> findById(Long id);
 

@@ -9,7 +9,7 @@ public interface AutorService {
 
     AutorResponse create(AutorRequest autorRequest);
     AutorResponse findById(Long id);
-    AutorResponse findByName(String name);
+    AutorResponse findByName(String nome);
     List<AutorResponse> findAll();
     AutorResponse update(Long id, AutorRequest autorRequest);
     void delete(Long id);
