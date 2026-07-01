@@ -31,6 +31,12 @@ public class AutorController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/BuscarNomes/{nome}")
+    public ResponseEntity<List<AutorResponse>> findByNomeContainingIgnoreCase(String nome) {
+        List<AutorResponse> response = service.findByNomeContainingIgnoreCase(nome);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/findByName/{nome}")
     public ResponseEntity<AutorResponse> findByName(@PathVariable String nome) {
         AutorResponse response = service.findByName(nome);

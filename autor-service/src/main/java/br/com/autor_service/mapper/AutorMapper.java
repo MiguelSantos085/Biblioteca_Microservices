@@ -7,7 +7,6 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
 public interface AutorMapper {
@@ -20,21 +19,4 @@ public interface AutorMapper {
     void updateAutorFromRequest(
             AutorRequest request,
             @MappingTarget AutorModel autor);
-
-//    public AutorModel toEntity(AutorRequest request) {
-//        AutorModel autor = new AutorModel();
-//        autor.setNome(request.getNome());
-//        autor.setNacionalidade(request.getNacionalidade());
-//        autor.setAnoNascimento(request.getAnoNascimento());
-//        return autor;
-//    }
-//
-//    public AutorResponse toResponse(AutorModel autor) {
-//        AutorResponse response = new AutorResponse();
-//        response.setId(autor.getId());
-//        response.setNome(autor.getNome());
-//        response.setNacionalidade(autor.getNacionalidade());
-//        response.setAnoNascimento(autor.getAnoNascimento());
-//        return response;
-//    }
 }

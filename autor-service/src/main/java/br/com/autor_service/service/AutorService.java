@@ -9,6 +9,7 @@ public interface AutorService {
 
     AutorResponse create(AutorRequest autorRequest);
     AutorResponse findById(Long id);
+    List<AutorResponse> findByNomeContainingIgnoreCase(String nome);
     AutorResponse findByName(String nome);
     List<AutorResponse> findAll();
     AutorResponse update(Long id, AutorRequest autorRequest);

@@ -37,6 +37,14 @@ public class AutorServiceImpl implements AutorService {
     }
 
     @Override
+    public List<AutorResponse> findByNomeContainingIgnoreCase(String nome) {
+        List<AutorModel> autores = repository.findByNomeContainingIgnoreCase(nome);
+        return autores.stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public AutorResponse findByName(String nome) {
         AutorModel autor = repository.findByNome(nome)
                 .orElseThrow(() -> new RuntimeException("Autor nome not found"));
