@@ -30,6 +30,14 @@ public class LivroServiceImpl implements LivroService {
     }
 
     @Override
+    public List<LivroResponse> findByDisponivel(Boolean disponivel) {
+        List<LivroModel> disponibilidades = repository.findByDisponivel(disponivel);
+        return disponibilidades.stream()
+                .map(mapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public LivroResponse findById(Long id) {
         LivroModel livro = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livro not found"));

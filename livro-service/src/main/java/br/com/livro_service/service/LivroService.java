@@ -9,6 +9,7 @@ public interface LivroService {
 
     LivroResponse create(LivroRequest livroRequest);
     LivroResponse findById(Long id);
+    List<LivroResponse> findByDisponivel(Boolean disponivel);
     List<LivroResponse> findByTituloContainingIgnoreCase(String titulo);
     LivroResponse findByTituloIgnoreCase(String titulo);
     List<LivroResponse> findAll();

@@ -25,6 +25,12 @@ public class LivroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping("/disponibilidade")
+    public ResponseEntity<List<LivroResponse>> findByDisponivel(@RequestParam Boolean disponivel) {
+        List<LivroResponse> response = service.findByDisponivel(disponivel);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<LivroResponse> findById(@PathVariable Long id) {
         LivroResponse response = service.findById(id);

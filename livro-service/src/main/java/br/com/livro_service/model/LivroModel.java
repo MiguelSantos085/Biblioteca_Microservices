@@ -20,7 +20,7 @@ public class LivroModel {
     private Integer anoPublicado;
 
     @Column(nullable = false)
-    private Boolean disponivel;
+    private Boolean disponivel = true;
 
     @Column(nullable = false)
     private Long autorId;
