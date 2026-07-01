@@ -17,4 +17,6 @@ public interface LivroRepository extends JpaRepository<LivroModel, Long> {
     Optional<LivroModel> findByTituloIgnoreCase(String titulo);
 
     Optional<LivroModel> findById(Long id);
+
+    boolean existsByAutorId(Long autorId);
 }

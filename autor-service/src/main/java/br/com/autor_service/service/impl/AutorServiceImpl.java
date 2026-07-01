@@ -1,5 +1,6 @@
 package br.com.autor_service.service.impl;
 
+import br.com.autor_service.client.LivroClient;
 import br.com.autor_service.dto.request.AutorRequest;
 import br.com.autor_service.dto.response.AutorResponse;
 import br.com.autor_service.mapper.AutorMapper;
@@ -16,10 +17,12 @@ public class AutorServiceImpl implements AutorService {
 
     private final AutorRepository repository;
     private final AutorMapper mapper;
+    private final LivroClient livroClient;
 
-    public AutorServiceImpl(AutorRepository repository, AutorMapper mapper){
+    public AutorServiceImpl(AutorRepository repository, AutorMapper mapper, LivroClient livroClient){
         this.repository = repository;
         this.mapper = mapper;
+        this.livroClient = livroClient;
     }
 
     @Override
@@ -73,6 +76,10 @@ public class AutorServiceImpl implements AutorService {
 
     @Override
     public void delete(Long id) {
+
+        if (livroClient.existsByAutor(id)) {
+            throw new RuntimeException("Não é possível excluir um autor que possui livros cadastrados.");
+        }
         repository.deleteById(id);
     }
 }

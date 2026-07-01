@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/livro")
+@RequestMapping("/livros")
 public class LivroController {
 
     private final LivroService service;
@@ -65,5 +65,10 @@ public class LivroController {
     public ResponseEntity<LivroResponse> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/existe-autor/{autorId}")
+    public ResponseEntity<Boolean> existsByAutorId(@PathVariable Long autorId) {
+        return ResponseEntity.ok(service.existsByAutorId(autorId));
     }
 }

@@ -15,4 +15,5 @@ public interface LivroService {
     List<LivroResponse> findAll();
     LivroResponse update(Long id, LivroRequest livroRequest);
     void delete(Long id);
+    boolean existsByAutorId(Long autorId);
 }

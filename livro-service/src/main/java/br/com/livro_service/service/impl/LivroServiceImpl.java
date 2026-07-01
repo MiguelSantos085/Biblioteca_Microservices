@@ -1,7 +1,10 @@
 package br.com.livro_service.service.impl;
 
+import br.com.livro_service.client.AutorClient;
 import br.com.livro_service.dto.request.LivroRequest;
+import br.com.livro_service.dto.response.AutorResponse;
 import br.com.livro_service.dto.response.LivroResponse;
+import br.com.livro_service.exception.AutorNotFoundException;
 import br.com.livro_service.mapper.LivroMapper;
 import br.com.livro_service.model.LivroModel;
 import br.com.livro_service.repository.LivroRepository;
@@ -16,16 +19,26 @@ public class LivroServiceImpl implements LivroService {
 
     private final LivroRepository repository;
     private final LivroMapper mapper;
+    private final AutorClient autorClient;
 
-    public LivroServiceImpl(LivroRepository repository, LivroMapper mapper) {
+    public LivroServiceImpl(LivroRepository repository, LivroMapper mapper, AutorClient autorClient) {
         this.repository = repository;
         this.mapper = mapper;
+        this.autorClient = autorClient;
     }
 
     @Override
     public LivroResponse create(LivroRequest request) {
+
+        AutorResponse autor = autorClient.findById(request.getAutorId());
+
+        if (autor == null) {
+            throw new AutorNotFoundException(request.getAutorId());
+        }
+
         LivroModel livro = mapper.toEntity(request);
         LivroModel saved = repository.save(livro);
+
         return mapper.toResponse(saved);
     }
 
@@ -72,6 +85,14 @@ public class LivroServiceImpl implements LivroService {
         LivroModel livro = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livro not found"));
 
+        if (request.getAutorId() != null) {
+            AutorResponse autor = autorClient.findById(request.getAutorId());
+
+            if (autor == null) {
+                throw new AutorNotFoundException(request.getAutorId());
+            }
+        }
+
         mapper.updateLivroFromRequest(request, livro);
 
         LivroModel livroAtualizado = repository.save(livro);
@@ -82,5 +103,10 @@ public class LivroServiceImpl implements LivroService {
     @Override
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsByAutorId(Long autorId) {
+        return repository.existsByAutorId(autorId);
     }
 }
