@@ -1,0 +1,56 @@
+services:
+  postgres-autor:
+    image: postgres:17
+    container_name: postgres-autor
+    environment:
+      POSTGRES_DB: Autor
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_autor_data:/var/lib/postgresql/data
+
+  autor-service:
+    build:
+      context: ./autor-service
+    container_name: autor-service
+    depends_on:
+      - postgres-autor
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-autor:5432/Autor
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+
+  postgres-livro:
+    image: postgres:17
+    container_name: postgres-livro
+    environment:
+      POSTGRES_DB: Livro
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_livro_data:/var/lib/postgresql/data
+
+  livro-service:
+    build:
+      context: ./livro-service
+    container_name: livro-service
+    depends_on:
+      - postgres-livro
+      - autor-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-livro:5432/Livro
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      AUTOR_SERVICE_URL: http://autor-service:8080
+    ports:
+      - "8081:8081"
+
+volumes:
+  postgres_autor_data:
+  postgres_livro_data:
