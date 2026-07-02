@@ -1,0 +1,10 @@
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Biblioteca Microservices</a>
+
+        <div>
+            <a class="btn btn-outline-light btn-sm me-2" th:href="@{/autores}">Autores</a>
+            <a class="btn btn-outline-light btn-sm" th:href="@{/livros}">Livros</a>
+        </div>
+    </div>
+</nav>

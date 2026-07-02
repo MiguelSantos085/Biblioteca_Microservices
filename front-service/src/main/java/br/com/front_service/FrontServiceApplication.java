@@ -1,13 +1,13 @@
-package br.com.front_web;
+package br.com.front_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FrontWebApplication {
+public class FrontServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FrontWebApplication.class, args);
+		SpringApplication.run(FrontServiceApplication.class, args);
 	}
 
 }

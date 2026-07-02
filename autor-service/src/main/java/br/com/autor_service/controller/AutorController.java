@@ -32,7 +32,7 @@ public class AutorController {
     }
 
     @GetMapping("/BuscarNomes/{nome}")
-    public ResponseEntity<List<AutorResponse>> findByNomeContainingIgnoreCase(String nome) {
+    public ResponseEntity<List<AutorResponse>> findByNomeContainingIgnoreCase(@PathVariable String nome) {
         List<AutorResponse> response = service.findByNomeContainingIgnoreCase(nome);
         return ResponseEntity.ok(response);
     }
@@ -50,7 +50,7 @@ public class AutorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AutorResponse> update(@PathVariable Long id, AutorRequest request) {
+    public ResponseEntity<AutorResponse> update(@PathVariable Long id, @RequestBody AutorRequest request) {
         AutorResponse response = service.update(id, request);
         return ResponseEntity.ok(response);
     }

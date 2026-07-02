@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="JunieProject"><![CDATA[{}]]></component>
+  <component name="JunieProject">{}</component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/front-web/pom.xml" />
         <option value="$PROJECT_DIR$/autor-service/pom.xml" />
         <option value="$PROJECT_DIR$/livro-service/pom.xml" />
+        <option value="$PROJECT_DIR$/front-service/pom.xml" />
       </list>
     </option>
   </component>

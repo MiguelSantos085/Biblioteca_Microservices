@@ -56,7 +56,7 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LivroResponse> update(@PathVariable Long id, LivroRequest request) {
+    public ResponseEntity<LivroResponse> update(@PathVariable Long id, @RequestBody LivroRequest request) {
         LivroResponse response = service.update(id, request);
         return ResponseEntity.ok(response);
     }

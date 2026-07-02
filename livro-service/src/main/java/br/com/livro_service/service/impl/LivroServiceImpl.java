@@ -37,6 +37,7 @@ public class LivroServiceImpl implements LivroService {
         }
 
         LivroModel livro = mapper.toEntity(request);
+        livro.setDisponivel(true);
         LivroModel saved = repository.save(livro);
 
         return mapper.toResponse(saved);
